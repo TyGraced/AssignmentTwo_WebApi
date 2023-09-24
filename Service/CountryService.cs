@@ -16,6 +16,8 @@ namespace Service
 
         public async Task<CountryDto> GetCountryByPhoneNumber(string phoneNumber)
         {
+            // Check if the PhoneNumber is at least 10 digits
+            if (phoneNumber.Length < 10) throw new CountryLengthException(phoneNumber);
             // Get Country code from PhoneNumber
             string countryCode = phoneNumber.Substring(0, 3);
 
